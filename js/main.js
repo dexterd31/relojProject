@@ -5,39 +5,41 @@ const datos = new Date();
 const dias = ['domingo','lunes','martes','miercoles','jueves','Viernes','sabado'];
 const meses = ['enero', 'febero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'] 
 
-const dia = datos.getDay();
-const fecha = datos.getDate();
-const mes = datos.getMonth();
-const año = datos.getFullYear();
+let dia = datos.getDay();
+let fecha = datos.getDate();
+let mes = datos.getMonth();
+let año = datos.getFullYear();
 
-const hora = datos.getHours();
-const minuto = datos.getMinutes()
-const segundo = datos.getSeconds()
-const franjaHoraria = {
+
+let franjaHoraria = {
     am: 'AM',
     pm: 'PM'
 }
 let esHora= '';
 //operador ternario
-hora > 12? esHora= franjaHoraria.pm : esHora = franjaHoraria.am
+datos.getHours() > 12? esHora= franjaHoraria.pm : esHora = franjaHoraria.am;
 
 //templates
 const template = `<div> ${dias[dia]} ${fecha} de ${meses[mes]} del ${año} </div>`;
-const template2 = `<div> ${hora}:${minuto}:${segundo} ${esHora} </div>`;
+
 
 //funciones
 function addItem(element,fatherElement, template){
     const div = document.createElement(element);
     div.innerHTML = template;
-    fatherElement.appendChild(div)
-}
-function generateTime(){
-    return reloj.textContent = `${hora}:${minuto}:${segundo} ${esHora}`;
+    fatherElement.appendChild(div);
 }
 
-//call functions
-addItem('div',parrafo, template);
-generateTime()
+function time(){
+    var hora = new Date();
+    reloj.innerHTML = hora.toLocaleTimeString();
+}
+addItem('div',parrafo,template)   
+setInterval(time, 1000);
+
+
+
+
 
 
 
